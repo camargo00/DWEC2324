@@ -1,12 +1,35 @@
 <html>
-    <head>
-        <title>
-
-        </title>
-    </head>
-    <body>
-        <script>
-            
-        </script>
-    </body>
+  <head>
+    <title>Tarea 101 Hecho por Daniel Camargo</title>
+  </head>
+  <body>
+    <script>
+    /*Declara seis variables utilizando nombres acordes a su contenido:
+    • el precio de una sola rosa (8) y el número de rosas que tienes (70)
+    • el precio de un solo lirio (10) y el número de lirios que tienes (50)
+    • el precio de un solo tulipán (2) y la cantidad de tulipanes que tienes (120)
+    a) Ahora declara tres variables, una para cada una de las rosas, lirios y tulipanes que tienes, 
+    en las que colocas su precio total. Inserta los valores correspondientes en las variables utilizando las variables declaradas en el paso anterior. 
+    b) Finalmente, declara una variable en la que almacenes el precio de todas tus flores (nuevamente, 
+    usa las variables anteriores para la inicialización). Muestra toda la información del inventario en la consola de la siguiente forma:
+    Rosa: precio unitario: 8 , cantidad: 70 , valor: 560
+    Lirio: precio unitario: 10 , cantidad: 50 , valor: 500
+    Tulipán: precio unitario: 2 , cantidad: 120 , valor: 240
+    Total:  1300*/
+    let rosa=8;
+    let lirio=10;
+    let tulipán=2;
+    let canRosa=70;
+    let canLirio=50;
+    let canTulipan=120;
+    let totalRosa= rosa*canRosa;
+    let totalLirio=lirio*canLirio;
+    let totalTulipan=tulipán*canTulipan;
+    let TotalTodo=totalRosa+totalLirio+totalTulipan;
+    console.log("Rosa: precio unitario: "+rosa+", cantidad: "+canRosa+", valor: "+totalRosa);
+    console.log("Lirio: precio unitario: "+lirio+", cantidad: "+canLirio+", valor: "+totalLirio);
+    console.log("Tulipán: precio unitario: "+tulipán+", cantidad: "+canTulipan+", valor: "+totalTulipan);
+    console.log("Total: "+TotalTodo)
+    </script>
+  </body>
 </html>
