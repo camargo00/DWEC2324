@@ -4,7 +4,7 @@
   </head>
   <body>
     <script>
-        let a= 7;
+        /*let a= 7;
         let b=6;
         [b,a]=[a,b];
         console.log(a,b) //DESESTRUCTURACIÓN
@@ -22,7 +22,19 @@
 
         const pareja= [3,4];
         const miArray=[2,pareja,5,6,7,8];
-        console.log(miArray);
+        console.log(miArray);*/
+    </script>
+
+    <script>//EJERCICIO 9.1
+        /*Solicitar una frase desde teclado, almacenar cada palabra en un elemento de un array y mostrar los siguientes datos:
+    • La primera palabra de la frase.
+    • La última palabra de la frase.
+    • El número de palabras de la frase.*/
+    var frase= prompt("Digame una frase: ");
+    var array=frase.split(' ');
+    
+    console.log(array[0],array.pop(),array.length+1);
+
     </script>
   </body>
 </html>
