@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>desestructuracion</title>
+  </head>
+  <body>
+    <script>
+        let a= 7;
+        let b=6;
+        [b,a]=[a,b];
+        console.log(a,b) //DESESTRUCTURACIÓN
+
+        const debug =(parametro)=>console.log(...parametro);
+        const matriz =[1,2,3,4,5]; //desagrupa
+        debug(matriz);
+
+        const debug1=(...parametro)=>console.log(parametro);
+        debug1(1,2,3,4,5); //agrupa en una matriz
+
+        const elements=[5,4,3,2] //lo desestructura primero en una variable first el primer elemento 
+        // el resto de la matriz se almacena en rest.
+        const [first,...rest]=elements;
+
+        const pareja= [3,4];
+        const miArray=[2,pareja,5,6,7,8];
+        console.log(miArray);
+    </script>
+  </body>
+</html>

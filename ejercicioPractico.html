@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ejercicio simulacro</title>
+  </head>
+  <body>
+    <p id="caja"> </p>
+    <script>
+        {
+          var filas = prompt("Dime la cantidad de filas");
+
+          for (var i = 0; i < filas; i++) 
+          {
+            var espacios = "";
+            var asteriscos = "";
+            for(var k=0; k<filas-i-1;k++)
+            {
+                espacios+="&nbsp&nbsp";
+             }  
+          
+            for (var j = 1;j<=2 *i+1; j++) 
+            {
+                asteriscos += "*";
+            }
+            caja.innerHTML=caja.innerHTML+espacios+asteriscos+"<br>";
+          }
+        }
+    </script>
+    <p align="middle"><script>piramide(6)</script></p>
+  </body>
+</html>

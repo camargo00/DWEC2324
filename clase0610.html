@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>Intentos</title>
+  </head>
+  <body>
+    <script>
+      /* let numeroIntento= Number(prompt ("Dime un numero"));
+            //ojo
+            let intentos=1;
+            let numeroAleatorio=Math.ceil(Math.random()*100)
+            while(numeroIntento!=numeroAleatorio)
+            {
+                if(numeroIntento>numeroAleatorio)
+                    {
+                        numeroIntento= Number(prompt("es menor, prueba otra vez"));
+                    }
+                else
+                    {
+                        numeroIntento=Number(prompt("es mayor, prueba otra vez"));
+                    }
+                    
+                intentos++;
+            }
+            alert("Has acertado");*/
+    </script>
+
+    <script>
+      /* const DIAS =["lunes","martes","miercoles","jueves","viernes"];
+            DIAS[1]= Date();
+            document.getElementById("aqui").innerHTML= DIAS;
+            console.log(DIAS);*/
+    </script>
+
+    <script>
+      /* let a=['lunes', 'martes', 2,4,6]
+            let cadena=a.join(':');
+            console.log(cadena);
+            let notas="5-7.5-6-5";
+            let arrayNotas=notas.split("-");
+            console.log(arrayNotas);*/
+    </script>
+
+    <script>
+      /*  var array=new Array();
+            for(i=0;i<10;i++)
+            {
+                var nombre=prompt("Dime el nombre del socio numero "+i+" :");
+                array.push(nombre);
+            }
+            console.log(array);
+            console.log("Hay "+array.length+" socios.");
+            arrayOrdenado=array.sort();
+            console.log(arrayOrdenado);
+            arrayInvertido=array.reverse(); 
+            console.log(arrayInvertido);
+            */
+      let personas = [
+        { nombre: "Juan", edad: 10 },
+        { nombre: "Diego", edad: 2 },
+        { nombre: "Blanca", edad: 5 },
+      ];
+
+      let personasOrdenado = (persona1, persona2) =>
+        persona1.edad - persona2.edad;
+      console.log(personasOrdenado(personas[0], personas[1]));
+
+      let personasOrdenadoNombre = (persona1, persona2) =>
+        persona1.nombre.localeCompare(persona2.nombre);
+      console.log(personas.sort(personasOrdenadoNombre));
+/*
+      var array = new Array();
+      var decision = prompt("quieres añadir numeros? si o no");
+      while ((decision = "si")) {
+        var notas = prompt("Dime el numero que quieres añadir al array:");
+        array.push(notas);
+        decision = prompt("quieres añadir mas? si o no");
+      }
+      array.sort(notas);
+      console.log(array);*/
+    </script>
+  </body>
+</html>
