@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>diferencias de for</title>
+</head>
+<body>
+    <script>
+        const hoy=[3,4,7,,{nombre:"juan", apellidos:"garcia"}];
+        
+        for (i=0;i<=hoy.length;i++)
+        {
+        console.log(hoy[i]);
+        }
+
+        for (i in hoy)
+        {
+        console.log(hoy[i]);
+        }
+
+        for (i of hoy)
+        {
+            console.log(i);
+        }
+
+        
+
+    </script>
+</body>
+</html>
