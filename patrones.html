@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>PATRONES EJERCICIO</title>
+  </head>
+  <body>
+    <script>
+      /*
+            	Realiza una aplicación web que solicite una cadena de texto. El programa debe decir cuántas veces ocurre cada uno de 
+                estos patrones sin distinguir mayúsculas y minúsculas: “00” “101”, “ABC”, “H0”.Un carácter puede formar parte de más 
+                de un patrón encontrado. Por ejemplo:
+                En la cadena “000” el patrón “00” aparece dos veces (una empieza en la posición 0 y otra empieza en la posición 1).
+                Internamente el programa realizará la cuenta de patrones con una función definida como function numeroPatrones(texto) 
+                que devolverá un número entero con el número de patrones encontrados. 
+                Ejemplo:
+                1110101000ABCHO	
+            */
+
+            var cadena = prompt("Dime la cadena de texto");
+            var contador0 = 0;
+            var contador101 = 0;
+            var contadorABC = 0;
+            var contadorH0 = 0;
+            var texto = cadena.toString();
+            console.log(texto);
+            function numeroPatrones(texto) {
+                /*for(var i=0;i<=cadena.length;i++)
+                        {*/
+                if (texto.includes("00",1) ==true) contador0++;
+
+                if (texto.includes("101",1) ==true) contador101++;
+                if (texto.includes("ABC",1) ==true) contadorABC++;
+
+                if (texto.includes("H0",1) ==true) contadorH0++;
+
+                //}
+                alert("Hay un total de: " +contador0 + " 00\n Un total de: " +contador101 +" 101 \n Un total de: " +contadorABC +
+                " ABC \n Y por último un total de: " +contadorH0 +" H0");
+            }
+            numeroPatrones(texto);
+            console.log(numeroPatrones());
+    </script>
+  </body>
+</html>
