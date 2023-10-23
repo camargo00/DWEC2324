@@ -23,18 +23,20 @@
             var texto = cadena.toString();
             console.log(texto);
             function numeroPatrones(texto) {
-                /*for(var i=0;i<=cadena.length;i++)
-                        {*/
-                if (texto.includes("00",1) ==true) contador0++;
+                for(var i=0;i<=cadena.length;i++)
+                {
+                  if (texto.charAt(i)=="0" && texto.charAt(i+1)=="0") 
+                  {
+                    contador0++;
+                  }
 
-                if (texto.includes("101",1) ==true) contador101++;
-                if (texto.includes("ABC",1) ==true) contadorABC++;
-
-                if (texto.includes("H0",1) ==true) contadorH0++;
-
+                  else if (texto.charAt(i) =="1" && texto.charAt(i+1)=="0" && texto.charAt(i+2)=="1") contador101++;
+                  else if (texto.charAt(i) =="A" && texto.charAt(i+1)=="B" && texto.charAt(i+2)=="C") contadorABC++;
+                  else if (texto.charAt(i) =="H" && texto.charAt(i+1)=="0") contadorH0++;
+                }
                 //}
-                alert("Hay un total de: " +contador0 + " 00\n Un total de: " +contador101 +" 101 \n Un total de: " +contadorABC +
-                " ABC \n Y por último un total de: " +contadorH0 +" H0");
+                alert("Hay un total de: " +contador0 + " '00' \n Un total de: " +contador101 +" '101' \n Un total de: " +contadorABC +
+                " 'ABC' \n Y por último un total de: " +contadorH0 +" 'H0'");
             }
             numeroPatrones(texto);
             console.log(numeroPatrones());
