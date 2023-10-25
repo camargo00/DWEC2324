@@ -1,0 +1,41 @@
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <title>Ejercicio años bisiestos y perimetro rectangulo</title>
+    </head>
+    <body>
+        <script>
+            function esBisiesto(parametro){
+            let anio=parseInt(parametro);
+                if (anio%4==0)
+                {
+                    if(anio.toString().substring(anio.toString().length - 2) === '00')
+                    {
+                        if(anio%400==0)
+                        alert("el año "+anio+" es bisiesto");
+                        else
+                        alert("el año "+anio+" no es bisiesto");
+                    }
+                    else
+                    alert("el año "+ anio+" es bisiesto");
+                }
+            else
+            alert("el año "+anio+" no es bisiesto");    
+            }
+            esBisiesto(2000);
+        </script>
+
+        <script>
+            function perimetroRectangulo(altura,base)
+            {
+                var numero1=parseFloat(altura);
+                var numero2=parseFloat(base);
+
+                var perimetro=(2*(numero1+numero2)) .toFixed(2);
+                alert("El perímetro de dicho rectángulo es: "+perimetro);
+            }
+                perimetroRectangulo(1.12,2.21);
+
+        </script>
+    </body>
+</html>
