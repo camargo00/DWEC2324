@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../Proyecto"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../diseño intefaces"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "DWEC2324"
+	}
+}
