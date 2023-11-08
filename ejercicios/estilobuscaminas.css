@@ -1,0 +1,17 @@
+table {
+    border-collapse: collapse;
+}
+#tablero {
+    margin: 0 auto; 
+}
+td {
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid green;
+    cursor: pointer;
+}
+h1 {
+    text-align: center; 
+}
