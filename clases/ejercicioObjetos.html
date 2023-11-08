@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <title>Ejercicio objetos</title>
+    </head>
+    <body>
+
+        <script>
+            function tvSamsung(nom,cat,ud,precio){
+                this.nombre=nom;
+                this.categoria=cat;
+                this.unidades=ud;
+                this.precio=precio;
+                this.importe=function(){
+                    return this.unidades*this.precio
+                }
+            }
+            var tele=new tvSamsung("OLed",42,5,100) //creamos un ejemplo
+            console.log(tele.nombre);
+            console.log(tele.categoria);
+            console.log(tele.unidades);
+            console.log(tele.precio);
+            console.log(tele.importe()); //comprobamos que todos las propiedades y metodos funcionen bien.
+
+            function Producto(nom,cat,ud,precio){
+                this.nombre=nom;
+                this.categoria=cat;
+                this.unidades=ud;
+                this.precio=precio;
+                this.importe=function(){
+                    return this.unidades*this.precio
+                }
+                this.getInfo=function(){
+                    return this.nombre+"("+this.categoria+"):"+this.unidades+"x"+this.precio+"€="+this.importe()+"€";
+                }
+                this.toString=function(){
+                    return "El nombre del televisor es: "+this.nombre+", la categoría a la que pertenece es: "+this.categoria
+                    +", hay un total de "+this.unidades+" unidades, el precio unitario es de: "+this.precio+
+                    " € y el precio total de todas las unidades es de: "+this.importe()+"€.";
+                }
+                this.valueOf=function(){
+                    return this.unidades*this.precio;
+                }
+            }
+            var producto=new Producto("OLed",42,5,100)
+
+            console.log(producto.importe());
+            console.log(producto.getInfo());//creamos un objeto Producto y llamamos a todas sus propiedades y metodos.
+            console.log(producto.toString()); 
+            
+            function Televisores (nom,cat,unidades,precio,tam){ 
+                //Herencia de los atributos de producto
+                Producto.call(this,nom, cat, unidades, precio);
+                this.tamanio=tam;
+                this.toString=function(){
+                    return "El nombre del televisor es: "+this.nombre+", la categoría a la que pertenece es: "+this.categoria
+                    +", hay un total de "+this.unidades+" unidades, el precio unitario es de: "+this.precio+
+                    " € y el precio total de todas las unidades es de: "+this.importe()+"€ y el tamaño del televisor es de : "+this.tamanio+" pulgadas";
+                }
+                this.valueOf=function(){
+                    return this.unidades*this.precio;
+                }
+            }
+            //Asignacion de la herecia, se crea el prototype de televisores a partir del prototype de productos
+            //Establece la cadena de prototype para que televisores herede los atributos y metodos de producto 
+            Televisores.prototype = Object.create(Producto.prototype);
+            
+            //Cambio de la funcion de getInfo
+            Televisores.prototype.getInfo = function(){
+                    return this.nombre+" " + this.tamanio +"("+this.categoria+"):" + this.unidades +"x"+this.precio+"="+ this.valorTotal() + "€";
+            };
+
+            
+
+            let tv = new Televisores("TV LG","Televisores",7,300.50,"40");
+            console.log("tv: " + tv.getInfo());
+            console.log(tv.toString())
+
+            var array=new Array(
+                lg=new Producto("TV LG","4k",2,300,"40"),
+                samsung=new Producto("TV samsung","OLED",4,500,"55"),
+                oiki=new Producto("TV Oiki","lowcost",5,250,"60"),
+                sony=new Producto("TV Sony","smartTV",3,800,"34"),
+                xiaomi=new Producto("TV Xiaomi","4k",1,1000,"36"));
+            
+            function prodOrdenPorNombre(array){
+                return Array.sort
+            }
+
+
+        </script>
+    </body>
+</html>
