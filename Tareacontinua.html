@@ -1,26 +1,20 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Tarea continua 2</title>
+    <title>Tarea continua</title>
   </head>
   <body>
     <script>
       let arrayContactos = [
-        {
-          nombre: "Maxwell Wright",
+        {nombre: "Maxwell Wright",
           telefono: "(0191)7196495",
-          correo: "MaxwellWright@nonummyac.co.uk",
-        },
-        {
-          nombre: "Raja Villareal",
+          correo: "MaxwellWright@nonummyac.co.uk"},
+        {nombre: "Raja Villareal",
           telefono: "08663982895",
-          correo: "RajaVillareal@sed.com",
-        },
-        {
-          nombre: "Helen Richards",
+          correo: "RajaVillareal@sed.com"},
+        {nombre: "Helen Richards",
           telefono: "08001111",
-          correo: "libero@convallis.edu",
-        },
+          correo: "libero@convallis.edu"},
       ];
 
       //Añade un contacto al array
@@ -29,17 +23,15 @@
         telefono: "0913 531 3030",
         correo: "risus.Quisque@urna.ca",
       });
-
-      //Muestra por consola el primero y el ultimo contacto
-      console.log(
-        arrayContactos[0].nombre +
-          " / " +
-          arrayContactos[0].telefono +
-          " / " +
-          arrayContactos[0].correo
+      let userNombre = prompt("Dame el nombre del contacto");
+      let userTelefono = prompt("Dame el telefono del contacto");
+      let userCorreo = prompt("Dame el correo del contacto");
+      arrayContactos.push({nombre: userNombre, telefono: userTelefono, correo: userCorreo,});
+      //Muestra por consola el primero y el ultimo contacto por prompt
+      alert("Primer contacto: " +arrayContactos[0].nombre +" / " +arrayContactos[0].telefono +" / " +arrayContactos[0].correo);
+      alert("Ultimo contacto: " +arrayContactos[arrayContactos.length - 1].nombre +" / " +arrayContactos[arrayContactos.length - 1].telefono +" / " +
+      arrayContactos[arrayContactos.length - 1].correo
       );
-      console.log(arrayContactos[arrayContactos.length - 1].nombre +" / " + arrayContactos[arrayContactos.length - 1].telefono + " / " +
-      arrayContactos[arrayContactos.length - 1].correo);
     </script>
   </body>
 </html>
