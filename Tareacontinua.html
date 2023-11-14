@@ -1,31 +1,45 @@
 <html>
-<head>
-    <title>Tareacontinua</title>
-</head>
-<body>
-<!--Elabora una lista de contactos...-->
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tarea continua 2</title>
+  </head>
+  <body>
+    <script>
+      let arrayContactos = [
+        {
+          nombre: "Maxwell Wright",
+          telefono: "(0191)7196495",
+          correo: "MaxwellWright@nonummyac.co.uk",
+        },
+        {
+          nombre: "Raja Villareal",
+          telefono: "08663982895",
+          correo: "RajaVillareal@sed.com",
+        },
+        {
+          nombre: "Helen Richards",
+          telefono: "08001111",
+          correo: "libero@convallis.edu",
+        },
+      ];
 
-<script>
-    var nombre1="Maxwell Wright";
-    var nombre2="Raja Villarreal";
-    var nombre3="Helen Richards";
-    var telefono1="(0191) 719 6495";
-    var telefono2="0866 398 2895";
-    var telefono3="0800 1111";
-    var telefono4=telefono3+7;
-    var correo1="curabitur.egestas.nunc@nonummyac.co.uk";
-    var correo2="posuere.vulputate@sed.com";
-    var correo3="libero@convallis.edu";
+      //Añade un contacto al array
+      arrayContactos.push({
+        nombre: "Maisie Haley",
+        telefono: "0913 531 3030",
+        correo: "risus.Quisque@urna.ca",
+      });
 
-    console.log(nombre1+" "+telefono1+" "+correo1);
-    console.log(nombre2+" "+telefono2+" "+correo2);
-    console.log(nombre3+" "+telefono3+" "+correo3+" "+telefono4);
-
-</script>
-
-
-
-
-
-</body>
+      //Muestra por consola el primero y el ultimo contacto
+      console.log(
+        arrayContactos[0].nombre +
+          " / " +
+          arrayContactos[0].telefono +
+          " / " +
+          arrayContactos[0].correo
+      );
+      console.log(arrayContactos[arrayContactos.length - 1].nombre +" / " + arrayContactos[arrayContactos.length - 1].telefono + " / " +
+      arrayContactos[arrayContactos.length - 1].correo);
+    </script>
+  </body>
 </html>
