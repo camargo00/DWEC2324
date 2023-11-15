@@ -67,7 +67,7 @@
             
             //Cambio de la funcion de getInfo
             Televisores.prototype.getInfo = function(){
-                    return this.nombre+" " + this.tamanio +"("+this.categoria+"):" + this.unidades +"x"+this.precio+"="+ this.valorTotal() + "€";
+                    return this.nombre+" " + this.tamanio +"("+this.categoria+"):" + this.unidades +"x"+this.precio+"="+ this.importe() + "€";
             };
 
             
@@ -76,35 +76,80 @@
             console.log("tv: " + tv.getInfo());
             console.log(tv.toString())
 
-            var array=new Array(
-                lg=new Producto("TV LG","4k",2,300,"40"),
-                samsung=new Producto("TV Samsung","OLED",4,500,"55"),
-                oiki=new Producto("TV Oiki","lowcost",5,250,"60"),
-                sony=new Producto("TV Sony","smartTV",3,800,"34"),
-                xiaomi=new Producto("TV Xiaomi","4k",1,1000,"36"));
-            
-            function prodOrdenPorNombre(array)
-            {
-                return array.sort(function(a, b) {
-                var nombreA = a.nombre.toUpperCase(); // convierte a mayúsculas
-                var nombreB = b.nombre.toUpperCase(); // convierte a mayúsculas
-                if (nombreA < nombreB) {
-                    return -1;
-                }
-                if (nombreA > nombreB) {
-                    return 1;
-                }
-                return 0; // nombres iguales
-            });
+            var array = [
+        new Producto("TV LG", "4k", 2, 300, "40"),
+        new Producto("TV Samsung", "OLED", 4, 500, "55"),
+        new Producto("TV Oiki", "lowcost", 5, 250, "60"),
+        new Producto("TV Sony", "smartTV", 3, 800, "34"),
+        new Producto("TV Xiaomi", "4k", 1, 1000, "36")
+    ];
 
+    function prodOrdenPorNombre(array) {
+        return array.sort(function(a, b) {
+            var nombreA = a.nombre.toUpperCase();
+            var nombreB = b.nombre.toUpperCase();
+            if (nombreA < nombreB) {
+                return -1;
             }
-            var arrayOrdenado = prodOrdenPorNombre(array);
-            console.log("El array ordenado:"+arrayOrdenado);
-
-            function prodOrdenPorPrecio(array)
-            {
-
+            if (nombreA > nombreB) {
+                return 1;
             }
+            return 0;
+        });
+    }
+    var arrayOrdenado = prodOrdenPorNombre(array);
+    
+    console.log("Array ordenado:");
+    for (var i = 0; i < arrayOrdenado.length; i++) 
+    {
+        console.log(arrayOrdenado[i].nombre);
+    }
+    function prodOrdenPorPrecio(array) {
+        return array.sort(function(a, b) {
+            return a.importe() - b.importe();
+        });
+    }
+
+    function prodPrecioTotal(array) 
+    {
+    var total = 0;
+    for (var i = 0; i < array.length; i++) {
+        total += array[i].importe();
+    }
+    return total.toFixed(2);
+}
+
+function prodConMenosUnidades(array, unidades) {
+    var productosConMenosUnidades = [];
+
+    for (var i = 0; i < array.length; i++) {
+        if (array[i].unidades < unidades) {
+            productosConMenosUnidades.push(array[i]);
+        }
+    }
+
+    return productosConMenosUnidades;
+}
+
+function prodLista(array) {
+    var lista = "Listado de productos:\n";
+
+    for (var i = 0; i < array.length; i++) {
+        lista += "- " + array[i].getInfo() + "\n";
+    }
+
+    return lista;
+}
+
+    var arrayOrdenadoPorPrecio = prodOrdenPorPrecio(array);
+    console.log("Array ordenado por precio total:", arrayOrdenadoPorPrecio);
+    var totalImporte = prodPrecioTotal(array);
+    console.log("Importe total de productos:", totalImporte);
+    var productosConMenosUnidades = prodConMenosUnidades(array, 4);
+    console.log("Productos con menos de 4 unidades:", productosConMenosUnidades);
+    var listaProductos = prodLista(array);
+    console.log(listaProductos);
+
         </script>
     </body>
 </html>
