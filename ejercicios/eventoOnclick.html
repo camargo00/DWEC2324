@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Ejercicio clase evento 29/11/2023</title>
+    </head>
+    <body>
+        <h3 id="tradicional">Pulsar</h3>
+        <h4 id="p" onclick="this.innerHTML='Mi texto';" onmouseover="this.style.background='red';" onmouseout="this.style.background='yellow';"/>Pulsa aqui</h4>
+        <script>
+            document.getElementById("tradicional").onclick=cambiar;
+            function cambiar(){
+                document.getElementById("tradicional").innerHTML="Modelo de Registro.";
+            }
+        </script>
+    </body>
+</html>

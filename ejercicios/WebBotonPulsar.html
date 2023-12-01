@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <button onclick="cambiarColor()" id="cambiarColor" ">Cambiar Color</button>
+        <script>
+            
+            /*
+            a) boton web:
+            1.Si pulsado la pagina cambia de color (aleatorio)
+            2.Si pulsa en cualquier otra parte vuelve a blanco
+            b)eventos (event) muestre la posicion del raton ej:(x:480 y:365) */
+            document.getElementById('cambiarColor').addEventListener('click', cambiarColor);
+            function cambiarColor(){
+                document.body.style.backgroundColor=aleatorio();
+            }
+            function aleatorio(){
+                var numero1 = Math.floor(Math.random() * 256);
+                var numero2 = Math.floor(Math.random() * 256);
+                var numero3 = Math.floor(Math.random() * 256);
+                return 'rgb(' + numero1 + ',' + numero2 + ',' + numero3 + ')';
+            }
+            document.addEventListener('click', function(event) {
+                if (event.target !== document.getElementById("cambiarColor"))
+            {document.body.style.backgroundColor = 'white';}});
+        </script>
+    </body>
+</html>

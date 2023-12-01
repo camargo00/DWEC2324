@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, " />
+    <title>Ejercicio 2 Objects Windows</title>
+  </head>
+  <body>
+    <p id="ventana"></p>
+    <script>
+        var ventana;
+      function crearVentana() 
+        {
+        ventana=window.open("");
+        ventana.setInterval(ventana.document.write("<h1>¡Bienvenido amigo!</h1>"),2000);
+      }
+        function mover()
+        {
+            ventana.moveBy(300,100);
+        }
+
+        function cerrar()
+        {
+            ventana.close();
+        }
+        crearVentana();
+
+      
+    </script>
+    <button onclick="mover()">mover</button>
+    <button onclick="cerrar()">Cerrar</button>
+  </body>
+</html>

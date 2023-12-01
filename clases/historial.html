@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Historial Objeto</title>
+    </head>
+    <body>
+        <script>
+            alert("URL vistidas: "+history.length);
+            function atras(){
+                history.back;
+            }
+            var texto= "";
+            texto+="<br/>href: "+location.ref;
+            texto+="<br/>Hostname: "+location.hostname;
+            console.log(texto);
+        </script>
+    </body>
+</html>

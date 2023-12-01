@@ -1,33 +1,25 @@
-<html>
-    <head>
-        <title>Clase 25 octubre</title>
-    </head>
-    <body>
-        <script>
-           /* let minumero=27
-            alert(minumero.toString(2));
-            var inf=2;
-            while(inf!=Infinity){
-                alert(inf)
-                inf=inf*inf;
-                alert(typeof(Infinity))
+function generarCaminata(minutosDisponibles) {
+    // Direcciones posibles: 'n' (norte), 's' (sur), 'o' (oeste), 'e' (este)
+    const direcciones = ['n', 's', 'o', 'e'];
 
-            var num=123;
-            var num2=new Number(123);
-            var num3=new Number(123);
-            alert("num==num2:"+(num==num2));
-            alert("num===num2:"+(num===num2));
-            alert("num3===num2:"+(num3===num2));
-            }*/
+    // Función auxiliar para obtener una dirección aleatoria
+    function obtenerDireccionAleatoria() {
+        const indiceAleatorio = Math.floor(Math.random() * direcciones.length);
+        return direcciones[indiceAleatorio];
+    }
 
-            var maximo=Number.MAX_VALUE; alert("Maximo:"+maximo);
-            var minimo=Number.MIN_VALUE; alert("Minimo:"+minimo);
+    // Generar la secuencia de direcciones
+    let secuencia = '';
+    for (let i = 0; i < minutosDisponibles; i++) {
+        const direccion = obtenerDireccionAleatoria();
+        secuencia += direccion;
+    }
 
-            var numerito=17.654.toFixed(1);
-            alert(numerito)
-            var numerito2=17.654.toPrecision(3);
-            alert(numerito2);
-            
-        </script>
-    </body>
-</html>
+    return secuencia;
+}
+
+// Ejemplo de uso con 10 minutos disponibles
+const minutosParaPaseo = 10;
+const secuenciaPaseo = generarCaminata(minutosParaPaseo);
+
+console.log(`Secuencia de paseo para ${minutosParaPaseo} minutos: ${secuenciaPaseo}`);

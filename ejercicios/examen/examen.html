@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Examen</title>
+    </head>
+    <body>
+        <p id="caja"> </p>
+        <script>
+            function tiempo(x)
+            {
+                if(x<6 || x>16)
+                        alert("Debe estar entre 6 y 16 minutos");//Comprobamos que esté entre el tiempo requerido
+                else
+                {if(x%2==0) //Comprobamos que sean numeros pares
+                {
+                    {
+                    var arraySecuencia=[];
+                    const DIRECCION1= 'n';
+                    const DIRECCION2= 's';
+                    const DIRECCION3= 'e';
+                    const DIRECCION4= 'o';
+                    var mitad=x/2 //Lo dividi a la mitad para que de tiempo a volver
+                    for (var i = 0; i < mitad; i++) //Este bucle es para la primera parte del paseo
+                        {
+                        
+                        if (arraySecuencia[i]=='n')
+                        arraySecuencia.push(DIRECCION3);
+                        else
+                        arraySecuencia.push(DIRECCION1);
+                        
+                        }
+
+                        for (var i=mitad; i < x; i++)//Este es el segundo buccle de la vuelta 
+                        {
+                        if (arraySecuencia[i]=='n')
+                        arraySecuencia.push(DIRECCION4);
+                        else
+                        arraySecuencia.push(DIRECCION2);
+                        }
+                        return arraySecuencia.toString(); //Transformo el array en string.
+                }
+                }
+                
+                else
+                alert("Error, tiene que ser minutos pares");
+                }
+                }
+                caja.innerHTML=caja.innerHTML+tiempo(8)+"<br>"; //Paseo de 8 minutos
+                caja.innerHTML=caja.innerHTML+tiempo(12)+"<br>";//Paseo de 12 minutos.
+                
+
+            
+            
+        </script>
+    </body>
+</html>
