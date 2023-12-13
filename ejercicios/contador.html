@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio contador incremento/decremento</title>
+</head>
+<body>
+    <h1>Contador mouse</h1>
+    <h2 id="contador">0</h2>
+    <button id="botonContador" oncontextmenu="return false;">Clic para cambiar el contador</button>
+    <script>
+        let count = 0;
+    const contador = document.getElementById('contador');
+    const botonContador = document.getElementById('botonContador');
+    function click(event) 
+    {
+        if (event.button === 0) {
+        count--;
+        } 
+        else if (event.button === 2) {
+        count++;
+        }
+        contador.textContent = count;
+    }
+
+    botonContador.addEventListener('mousedown', click);
+    </script>
+</body>
+</html>
