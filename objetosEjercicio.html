@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    const usuarios = [
+        { id: 1, nombre: "Juan", edad: 25 },
+        { id: 2, nombre: "María", edad: 30 },
+        { id: 3, nombre: "Pedro", edad: 20 },
+        { id: 4, nombre: "Ana", edad: 35 },
+    ];
+    const filtro=usuarios.filter(filtrado)
+    function filtrado(values,index,array){
+        return values.edad>25;
+    }
+    console.log(filtro);
+    const edadDoble=filtro.map(duplicar);
+    function duplicar(values,index,array){
+        return values.edad*2;
+    }
+    console.log(edadDoble);
+
+    const edadesSumadas=edadDoble.reduce((acumulador, numero) => acumulador + numero, 0);
+    console.log(edadesSumadas);
+    </script>
+</body>
+</html>
