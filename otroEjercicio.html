@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const usuarios = [
+            { id: 1, nombre: "Juan", edad: 25 },
+            { id: 2, nombre: "María", edad: 30 },
+            { id: 3, nombre: "Pedro", edad: 20 },
+            { id: 4, nombre: "Ana", edad: 35 },
+            { id: 5, nombre: "Luisa", edad: 22 },
+            { id: 6, nombre: "Alberto", edad: 19 },
+        ];
+        const mayores18 = usuarios.filter(filtrado);
+        function filtrado(values, index, array) {
+            return values.edad >17;
+        }
+        console.log(mayores18);
+        const sumaEdades = mayores18.reduce((total, usuario) => total + usuario.edad,0);
+        const mediaEdades=(sumaEdades/mayores18.length).toFixed(2);
+        console.log(mediaEdades);
+
+        const usuarioMasJoven = usuarios.reduce((usuarioMin, usuario) => {return usuario.edad < usuarioMin.edad ? usuario : usuarioMin;}, usuarios[0]);
+        console.log(usuarioMasJoven);
+
+        const nombresA=usuarios.filter(inicial);
+        function inicial(values, index,array){
+            return values.nombre.charAt(0)=='A';
+        }
+        console.log(nombresA);  
+        
+    </script>
+</body>
+
+</html>
