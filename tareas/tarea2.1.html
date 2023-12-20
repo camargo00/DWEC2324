@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Práctica 201</title>
+</head>
+
+<body>
+    <script>
+        let fecha = new Date(); 
+        console.log(fecha);//1
+        let array1 = [1, 2, 3, 4, 5];
+        let array2 = [6, 7, 8, 9];
+        let array3 = array1.concat(array2);
+        console.log(array3);//2
+        let arrayRepetidos = [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4];
+        let noRepetidos = new Set(arrayRepetidos);
+        console.log(noRepetidos);//3
+        let numeroMinimo = prompt("Dime el numero minimo");
+        let numeroMaximo = prompt("Dime el numero máximo")
+        let numAleatorio = Math.floor(Math.random() * (numeroMaximo-numeroMinimo+1)+numeroMinimo);
+        console.log(numAleatorio);//4
+        //const alfanumerico=[1,2,3,4,5,6,7,8,9,"a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"];
+          let numLetras=prompt("¿Cuántos carácteres quieres que tenga la cadena?");
+          /*var CadenaAleatoria=""
+          for(var i=0;i<numLetras;i++){
+              CadenaAleatoria+=alfanumerico[Math.floor(Math.random()*alfanumerico.length)];
+          }
+          console.log(CadenaAleatoria);
+          */
+        var CadenaAleatoria = "";
+        for (var i = 0; i < numLetras; i++) {
+            CadenaAleatoria += String.fromCharCode(Math.floor(Math.random() * 94) + 33);
+        }
+        console.log(CadenaAleatoria);//5
+
+        const objeto1 = {
+            a: "Javier",
+            b: 42,
+            c: "Madrid",
+        };
+
+        console.log(Object.values(objeto1));//6
+
+        var miObjeto = { color: 'rojo'};
+        if('color' in miObjeto && miObjeto['color'] === 'rojo'){
+            console.log("Si");
+        }
+        else console.log("No");//8
+
+        const arrayDesordenado= [1,7,6,2,5,3,8,4,9]
+        const arrayOrdenado=arrayDesordenado.sort(function(a,b){return a-b;});
+        console.log("El array ordenado es: "+ arrayOrdenado);//9
+
+        let objeto2={nombre:"Fernando", edad:20, telefono:915814844}
+        let longitudObjeto = Object.keys(objeto2).length;
+
+        console.log("La longitud del objeto es: " + longitudObjeto);//10
+
+    </script>
+</body>
+
+</html>

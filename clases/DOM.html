@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creacion y modificación de elementos</title>
+    <style>
+        .miClase{
+            color:red;
+        }
+        body {
+            background-color: lightblue;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="main">
+        <p id="parrafo1">Este es el primer párrafo</p>
+        <p id="parrafo2">Este es el segundo párrafo</p>
+        <p id="parrafo3" class="miClase">Este es el tercer párrafo</p>
+    </div>
+    <br/>
+    <button id="cambiarTextos">Cambiar texto de párrafos</button>
+    <button id="cambiarClases">Cambiar clases de párrafos</button>
+    <button id="quitarClases">Quitar clases de todos párrafos</button>
+    <br/>
+    <button id="cambiarColor">Cambiar color</button>
+    <button id="cambiarTamaño">Cambiar tamaño</button>
+    <script>
+    window.addEventListener("load",inicio);
+
+    function inicio(){
+        document.getElementById("cambiarTextos").addEventListener("click",cambiarTextos);
+        document.getElementById("cambiarClases").addEventListener("click",cambiarClases);
+        document.getElementById("quitarClases").addEventListener("click",quitarClases);
+        document.getElementById("cambiarColor").addEventListener("click",cambiarColor);
+        document.getElementById("cambiarTamaño").addEventListener("click",cambiarTamaño);
+    }
+    function cambiarTextos(){
+        document.getElementById("parrafo1").innerHTML="Primer párrafo cambiado";
+        document.getElementsByTagName("p")[1].innerHTML="Segundo párrafo cambiado";
+        document.getElementsByClassName("miClase")[0].innerHTML="Tercer párrafo cambiado";
+    }
+    function cambiarClases(){
+        document.getElementById("parrafo1").setAttribute("class","miClase");
+        document.getElementById("parrafo2").className="miClase";
+    }
+
+    function quitarClases(){
+        document.getElementById("parrafo1").setAttribute("class","");
+        document.getElementById("parrafo2").className="";
+        /*
+        for(var i=0, i<document.getElementsByTagName("p").length;i++){
+            document.getElementsByTagName("p")[i].className=""}
+        }
+        */
+    }
+    function cambiarColor(){
+        document.getElementById("parrafo1").setAttribute()
+    }
+    </script>
+</body>
+</html>

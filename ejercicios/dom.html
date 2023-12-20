@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>body {
+        background-color: lightgray;
+        text-align: center;
+        font-family: 'Arial', sans-serif;
+        font-size: 16px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 14px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+    }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 id="dinamico">Este es un titulo dinámico</h1>
+    </div>
+    <button id="cambiarColor">Cambiar color</button>
+    <button id="cambiarTamaño">Cambiar tamaño</button>
+</body>
+<script>
+    window.addEventListener("load",inicio);
+    function inicio(){
+        document.getElementById("cambiarColor").addEventListener("click",cambiarColor);
+        document.getElementById("cambiarTamaño").addEventListener("click",cambiarTamaño);
+    }
+    function cambiarColor(){
+                document.getElementById("dinamico").style.color=aleatorio();
+            }
+            function aleatorio(){
+                var numero1 = Math.floor(Math.random() * 256);
+                var numero2 = Math.floor(Math.random() * 256);
+                var numero3 = Math.floor(Math.random() * 256);
+                return 'rgb(' + numero1 + ',' + numero2 + ',' + numero3 + ')';
+            }
+    function cambiarTamaño(){
+        document.getElementById("dinamico").style.fontSize=tamañoAleatorio();
+        function tamañoAleatorio(){
+            var num=Math.floor(Math.random()*50);
+            return num+"px";
+        }
+    }
+</script>
+</html>
