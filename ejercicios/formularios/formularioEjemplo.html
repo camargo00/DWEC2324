@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="pagina.php" method="post" enctype="multipart/form-data" /> <br/> 
+        Nombre: <input type="text" name="Nombre"> <br/>
+        Apellidos: <input type="text" name="Apellidos"><br/>
+        DNI: <input type="text" name="DNI"><br/>
+        Sexo: <br/><input type="radio" id="sexo" name="Sexo" value="Hombre"> Hombre <br/><input type="radio" id="sexo" name="Sexo" value="Mujer"> Mujer <br/>
+        Incluir mi foto: <input type="file" value="Examinar"><br/>
+        <input type="checkbox" checked>Enviar publicidad <br/> <br/>
+        <input type="submit" value="Guardar cambios">
+        <input type="reset" value="Borrar los datos introducidos"><br/>
+        
+    </form>
+    <form action="pagina.php" method="post" enctype="multipart/form-data">
+        <select id="aprobar">
+            <option value="10">Saco un 10</option>
+            <option value="9">Saco un 9</option>
+            <option value="8">Saco un 8</option>
+            <option value="anadirNuevo">Añadir nuevo</option>
+        </select>
+        <input type="text" id="texto" style="display: none;" /> <!-- Ocultar inicialmente el cuadro de texto -->
+        <button type="button" id="crearNuevo" style="display: none;">Crear Nuevo</button> <!-- Ocultar inicialmente el botón -->
+    </form>
+    <script>
+        window.addEventListener("load", inicio);
+    
+        function inicio() {
+            document.getElementById("aprobar").addEventListener("change", toggleElemento);
+            document.getElementById("crearNuevo").addEventListener("click", crearNuevo);
+        }
+    
+        function toggleElemento() {
+            var cuadroTexto = document.getElementById("texto");
+            var botonCrearNuevo = document.getElementById("crearNuevo");
+    
+            cuadroTexto.style.display = (this.value === "anadirNuevo") ? "block" : "none";
+            botonCrearNuevo.style.display = (this.value === "anadirNuevo") ? "block" : "none";
+            
+        }
+    
+        function crearNuevo() {
+            var nota = document.createElement("option");
+            var texto = document.createTextNode(document.getElementById("texto").value);
+            nota.appendChild(texto);
+    
+            var select = document.getElementById("aprobar");
+            select.appendChild(nota);
+        }
+    var elemento=document.getElementById("aprobar");
+	for(i=0;i<elemento.options.length;i++){
+	alert("Valor de la opcion "+elemento.options[i].value);}
+	var sel=elemento.selectedIndex;
+	alert("El valor de la opcion seleccionada es "+elemento.options[sel].value+" y el texto asociado es"+elemento.options[sel].text);
+	// Para cambiar  el índice seleccionado:
+	elemento.selectedIndex=0;
+    </script>
+    
+</body>
+</html>
