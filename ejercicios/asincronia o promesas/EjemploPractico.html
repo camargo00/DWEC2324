@@ -13,32 +13,32 @@
     </div>
     <p id="resultado"></p>
     <script>
-        var contador = 1;
-    
+        var contador=0;
+        
         function probarPromesa() {
+            var esteContador=++contador;
             var resultadoElemento = document.getElementById("resultado");
     
-            console.log(contador + ") Antes de construir la promesa");
-            resultadoElemento.innerHTML += contador + ") Antes de construir la promesa<br>";
+            console.log(esteContador + ") Antes de construir la promesa");
+            resultadoElemento.innerHTML += esteContador + ") Antes de construir la promesa<br>";
     
             const miPromesa = new Promise((resolve, reject) => {
-                console.log(contador + ") Dentro de la promesa antes del timeout. Empieza el codigo asincrono");
-                resultadoElemento.innerHTML += contador + ") Dentro de la promesa antes del timeout. Empieza el codigo asincrono<br>";
+                console.log(esteContador + ") Dentro de la promesa antes del timeout. Empieza el codigo asincrono");
+                resultadoElemento.innerHTML += esteContador + ") Dentro de la promesa antes del timeout. Empieza el codigo asincrono<br>";
     
                 setTimeout(function () {
-                    resolve(contador);
+                    resolve(esteContador);
                 }, Math.random() * 4000 + 1000);
             });
     
             miPromesa
-                .then(numero => {
-                    console.log(numero + ") Dentro del .then. Codigo asincrono terminado");
-                    resultadoElemento.innerHTML += numero + ") Dentro del .then. Codigo asincrono terminado<br>";
+                .then(esteContador => {
+                    console.log(esteContador + ") Dentro del .then. Codigo asincrono terminado");
+                    resultadoElemento.innerHTML += esteContador + ") Dentro del .then. Codigo asincrono terminado<br>";
     
-                    console.log(contador + ") Codigo despues del .then. Codigo sincrono terminado.");
-                    resultadoElemento.innerHTML += contador + ") Codigo despues del .then. Codigo sincrono terminado.<br>";
+                    console.log(esteContador + ") Codigo despues del .then. Codigo sincrono terminado.");
+                    resultadoElemento.innerHTML += esteContador + ") Codigo despues del .then. Codigo sincrono terminado.<br>";
     
-                    contador++;
                 });
         }
     </script>
