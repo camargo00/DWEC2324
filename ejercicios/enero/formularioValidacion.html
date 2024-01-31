@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: azure;
+            text-decoration: wavy;
+            size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario Oficialisimo</h1>
+    <form action="enviar.php" method="post" id="miFormulario">
+        <table>
+            <tr>
+                <td>Nombre:</td>
+                <td>
+                    <input type="text" name="nombre" id="nombre" maxlength="15" required pattern="[A-Za-z]{2,15}" title="Introduce datos correctos y máximo 15 carácteres"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Teléfono: </td>
+                <td>
+                    <input type="text" name="telefono" id="telefono" minlength="9" required/>
+                </td>
+            </tr>
+            <tr>
+                <td>Fecha de nacimiento: </td>
+                <td>
+                    <input type="text" name="dia" size="2" id="dia" />
+                    <input type="text" name="mes" size="2" id="mes" />
+                    <input type="text" name="ano" size="4" id="ano" />
+                </td>
+            </tr>
+            <tr>
+                <td>Sexo: </td>
+                <td>
+                    <input type="radio" name="sexo" value="hombre"/>Hombre
+                    <input type="radio" name="sexo" id="mujer"/>Mujer
+                    <input type="radio" name="sexo" id="otros"/>Otros
+                </td>
+            </tr>
+            <tr>
+                <td>Mayor de 18 años</td>
+                <td>
+                    <input type="checkbox" name="mayorEdad" id="mayorEdad"/>
+                </td>
+            </tr>
+        </table>
+        <p>
+            <input type="submit" value="Enviar" id="enviar"/>
+            <input type="reset" value="Borrar" id="reset" />
+        </p>
+    </form>
+
+    <script>
+        function validaTelefono(){
+            var elemento= document.getElementById("telefono");
+            if(isNaN(elemento.value)){
+                alert("El campo tiene que ser numerico");
+                return false;
+            }
+            return true;
+        }
+
+        function validaFecha(){
+            var dia=document.getElementById("dia").value;
+            var mes=document.getElementById("mes").value;
+            var ano=document.getElementById("ano").value;
+            var fecha= new Date (ano,mes,dia);
+            if(isNaN(fecha)){
+                alert("Los campos de la fecha son incrorectos");
+                return false;
+            }
+            return true;
+        }
+
+        function validaCheck(){
+            var campoCheck=document.getElementById("mayor");
+            if(!campoCheck.checked){
+                alert("Debes ser mayor de edad")
+                return false;
+            }
+            return true;
+        }
+        function validar(e){
+            if(validaNombre && validaTelefono && validaFecha & validaCheck && confirm ===true)
+            {
+
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error{
+            border:solid 2px red;
+        }
+    </style>
+</head>
+<body>
+    <script src="validacionJS.js"></script>
+    <h1>Formulario Oficialisimo</h1>
+    <form action="enviar.php" method="post" id="miFormulario">
+    <table>
+            <tr>
+                <td>Nombre:</td>
+                <td>
+                    <input type="text" name="nombre" id="nombre" maxlength="15" required pattern="[A-Za-z]{2,15}" title="Introduce datos correctos y máximo 15 carácteres"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Edad:</td>
+                <td>
+                    <input type="text" name="edad" id="edad" pattern="\d+" title="Por favor, ingresa solo números." maxlength="3" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Teléfono: </td>
+                <td>
+                    <input type="text" name="telefono" id="telefono" minlength="9" required/>
+                </td>
+            </tr>
+            </table>
+            <p>
+                <input type="submit" value="Enviar" id="enviar"/>
+                <input type="reset" value="Borrar" id="reset" />
+            </p>
+        </form>
+        
+</body>
+</html>

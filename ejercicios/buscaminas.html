@@ -10,6 +10,10 @@
         <br>
         <br>
         <script>
+            //Comprobar si el navegador soporta storage mostrando un mensaje con el nombre de usuario 
+            //si este se ha logeado en la pagina diferenciando si es su primera visita o ya ha entrado en mas ocasiones. 
+            //Con un contador para ver cuantas veces ha accedido a la pagina (funcion incremento y otra de decremento) y funcion de logOut.
+
             function generarTableroJS() {
                 var numFilas = prompt("¿Cuántas filas y columnas quieres que tenga el tablero?");
                 var tabla = '<table id="tablero">';
@@ -25,9 +29,7 @@
                 tabla += '</table>';
                 document.body.innerHTML += tabla;
             }
-            function casillaSeleccionada(casilla) {
-            casilla.style.backgroundColor = "red"; // Cambiar el fondo de la casilla al seleccionarla
-        }
+            
             generarTableroJS();
         </script>
     </body>

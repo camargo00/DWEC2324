@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <p id="texto">Maquina Apagada</p>
+    <button type="submit" id="boton">Encender máquina</button>
+
+    <script>
+    window.addEventListener("load", inicio);
+
+    function inicio() {
+    document.getElementById("boton").addEventListener("click", cambiarTexto);}
+
+    function cambiarTexto() {
+        var parrafo = document.getElementById("texto");
+
+        if (parrafo.innerHTML === "Maquina Apagada") {
+            parrafo.innerHTML = "Maquina Encendida";
+            var boton = document.getElementById("boton");
+            boton.innerHTML = "Apagar Máquina";
+        } else {
+            parrafo.innerHTML = "Maquina Apagada";
+            var boton = document.getElementById("boton");
+            boton.innerHTML = "Encender Máquina";
+        }
+    }
+    </script>
+</body>
+</html>

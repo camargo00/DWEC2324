@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      window.addEventListener("load", inicio);
+
+
+      const lista = [];
+
+      function inicio() {
+        document
+          .getElementById("anadirLista")
+          .addEventListener("click", anadirLista);
+      }
+
+      function anadirLista() {
+        var nuevoProducto = document.getElementById("texto").value;
+
+        lista.push(nuevoProducto);
+        lista.sort();
+
+        var cont = document.getElementById("div1");
+        cont.innerHTML = "";
+
+        lista.forEach(function (elemento) {
+          var producto = document.createElement("li");
+          var texto = document.createTextNode(elemento);
+          producto.appendChild(texto);
+          cont.appendChild(producto);
+        });
+
+        document.getElementById("texto").value = ""; //limpia el textarea
+
+      }
+    </script>
+    <div id="div1"></div>
+    <br />
+    <textarea id="texto"></textarea>
+    <br />
+    <button id="anadirLista">Añadir a la lista</button>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const datos=[{
+            id:1, nombre:"Juan",edad:18},
+            {id:2, nombre:"Miguel",edad:45},
+            {id:3, nombre:"Blanca",edad:21},
+        ,]
+        function getDatos(){
+            return(datos);
+        }
+        console.log(getDatos())
+        
+        function getDatosSync(){
+            setTimeout(getDatos(),3000);
+        }
+        console.log(getDatosSync())
+
+        function getDatosProm(){
+            return new Promise((resolve,reject)=>{setTimeout(()=>resolve(datos),8000)}
+            )
+        }
+        getDatosProm().then((datos)=>console.log(datos));
+    </script>
+</body>
+</html>
