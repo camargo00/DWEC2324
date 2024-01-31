@@ -16,7 +16,7 @@
             return(datos);
         }
         console.log(getDatos())
-        
+
         function getDatosSync(){
             setTimeout(getDatos(),3000);
         }
@@ -27,6 +27,22 @@
             )
         }
         getDatosProm().then((datos)=>console.log(datos));
+
+        async function asyawt(){
+            const misDatos= await getDatosProm()
+            console.log(misDatos);
+        }
+        asyawt();
+
+        async function asyawt(){
+            try{
+                const misDatos= await getDatosProm()
+                console.log(misDatos);
+            } catch(err){
+                console.log(err)}
+        }
+        asyawt();
+        
     </script>
 </body>
 </html>

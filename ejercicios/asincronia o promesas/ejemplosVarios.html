@@ -40,11 +40,10 @@
         //Ejemplo 5
         const miPromesa2= new Promise((resolve,reject)=>{
             const numero=Math.floor(Math.random()*10)
-            setTimeout(()=>(numero>5?resolve(numero):reject(new Error("Se ha obtenido un numero menor")),3000))
+            setTimeout(()=>(numero > 5 ? resolve(numero) : reject(new Error("Se ha obtenido un numero menor que 5"))),3000)})
             miPromesa2
             .then(numero=>console.log(numero))
             .catch(error=>console.log(error))
-        })
     </script>
 </body>
 </html>
