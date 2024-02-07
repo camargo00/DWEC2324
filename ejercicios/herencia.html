@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            class Coche{
+                constructor(marca){
+                    this.marca=marca;
+                }
+            }
+
+            function anuncio(){
+                return "Ha llegado el nuevo coche de "+this.marca;
+            }
+            
+            class Modelo extends Coche{
+                constructor (marca, modelo){
+                    super(marca);
+                    this.modelo=modelo;
+                }
+                anuncioCompleto(){
+                    return this.anuncio()+": el modelo "+this.modelo;
+                }
+            }
+            let miCoche=new Modelo ("Toyota", "Yaris");
+            mensaje.innerHTML=miCoche.anuncioCompleto();
+
+    </script>
+</body>
+</html>

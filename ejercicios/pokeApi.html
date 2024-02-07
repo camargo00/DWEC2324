@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon API Demo</title>
+</head>
+<body>
+
+<h1>Pokemon Information</h1>
+
+<label for="pokemonInput">Enter Pokemon Name or ID:</label>
+<input type="text" id="pokemonInput" placeholder="e.g., pikachu">
+<button onclick="getPokemonInfo()">Get Info</button>
+
+<button onclick="getGenerationInfo(1)">Show Generation I</button>
+
+<div id="pokemonInfo"></div>
+
+<script>
+    function getPokemonInfo() {
+        const inputElement = document.getElementById('pokemonInput');
+        const pokemonNameOrId = inputElement.value.toLowerCase().trim();
+        const apiUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonNameOrId}/`;
+
+        fetchPokemonData(apiUrl);
+    }
+
+    function getGenerationInfo(generationNumber) {
+        const apiUrl = `https://pokeapi.co/api/v2/generation/${generationNumber}/`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const pokemonSpeciesUrls = data.pokemon_species.map(species => species.url);
+                fetchPokemonData(pokemonSpeciesUrls.join(','));
+            })
+            .catch(error => {
+                displayError(`Error: ${error.message}`);
+            });
+    }
+
+    function fetchPokemonData(apiUrl) {
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    // Multiple Pokémon data
+                    data.forEach(pokemonData => {
+                        displayPokemonInfo(pokemonData);
+                    });
+                } else {
+                    // Single Pokémon data
+                    displayPokemonInfo(data);
+                }
+            })
+            .catch(error => {
+                displayError(`Error: ${error.message}`);
+            });
+    }
+
+    function displayPokemonInfo(pokemonData) {
+        const pokemonInfoElement = document.getElementById('pokemonInfo');
+        pokemonInfoElement.innerHTML += `
+            <h2>${pokemonData.name}</h2>
+            <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}"/>
+            <p>Height: ${pokemonData.height} decimetres</p>
+            <p>Weight: ${pokemonData.weight} hectograms</p>
+        `;
+    }
+
+    function displayError(errorMessage) {
+        const pokemonInfoElement = document.getElementById('pokemonInfo');
+        pokemonInfoElement.innerHTML = `<p>${errorMessage}</p>`;
+    }
+</script>
+
+</body>
+</html>
