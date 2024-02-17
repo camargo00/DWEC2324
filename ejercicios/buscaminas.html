@@ -26,7 +26,7 @@
         .subtext {
             text-align:center;
             color: black;
-            font-size: 1.5rem;
+            font-size: 24px;
             margin-bottom: 10px;
         }
         td.revelada {
@@ -115,6 +115,7 @@
             var totalCasillas = numFilas * numFilas;
             var numeroBombas = Math.floor(totalCasillas * porcentajeBombas);
             banderasRestantes = numeroBombas;
+            actualizarBanderasRestantes(); // con esto mostramos el numero de bombas y de banderas disponibles desde el principio   
             var tabla = '<table id="tablero">';
 
             for (var x = 0; x < numFilas; x++) {
