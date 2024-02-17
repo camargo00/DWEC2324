@@ -1,36 +1,310 @@
+<!DOCTYPE html>
 <html>
-    
-    <head>
-        <title>Buscaminas propio</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="estilobuscaminas.css">
-    </head>
-    <body>
-        <h1 id="tablero">¡¡¡Hola bienvenido a mi buscaminas!!!</h1>
-        <br>
-        <br>
-        <script>
-            //Comprobar si el navegador soporta storage mostrando un mensaje con el nombre de usuario 
-            //si este se ha logeado en la pagina diferenciando si es su primera visita o ya ha entrado en mas ocasiones. 
-            //Con un contador para ver cuantas veces ha accedido a la pagina (funcion incremento y otra de decremento) y funcion de logOut.
+<head>
+    <title>Buscaminas Daniel Camargo Torremocha</title>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        #tablero {
+            margin: 0 auto; 
+        }
+        td {
+        background-color: transparent;
+        text-align: center;
+        width: 40px;
+        height: 40px;
+        border: 1px solid lightslategray; 
+        cursor: pointer;
+        position: relative;
+        transition: background-color 0.3s;
+    }
+        h1 {
+            text-align: center; 
+        }    
+        .subtext {
+            text-align:center;
+            color: black;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        td.revelada {
+            background-color: rgba(240, 240, 240, 0.9); /* Blanco ligeramente más oscuro */
+        }
 
-            function generarTableroJS() {
-                var numFilas = prompt("¿Cuántas filas y columnas quieres que tenga el tablero?");
-                var tabla = '<table id="tablero">';
-                
-                for (var i = 0; i < numFilas; i++) {
-                    tabla += '<tr>';
-                    for (var j = 0; j < numFilas; j++) {
-                        tabla += '<td></td>';
-                    }
-                    tabla += '</tr>';
+        .bomba img {
+            width: 100%; 
+            height: auto; 
+            display: none;
+        }
+        .numero {
+            display: none; /* Oculta el número por defecto */
+            position: absolute; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .bandera {
+            background-image: url('bandera-roja.png');
+            background-size: cover; 
+        }
+
+        #botonExplicacion, #botonResetearBuscaminas {
+            display: block; 
+            margin: 0 auto; 
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color:rgb(255, 166, 0);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px; 
+            margin-bottom: 20px;
+        }
+
+        #botonExplicacion:hover, #botonResetearBuscaminas:hover{
+            background-color:rgb(255, 190, 0);
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>¡Bienvenidos al buscaminas de Daniel Camargo!</h1>
+    <h1 id="tablero"></h1>
+    <br>
+    <br>
+    <div class="subtext">
+        Minas restantes: <span id="contador-banderas"></span>
+    </div>
+    <button id="botonExplicacion">¿Cómo jugar al buscaminas?</button>
+    <button id="botonResetearBuscaminas">Reiniciar Buscaminas</button>
+    <script>
+        var juegoTerminado = false;
+        var numFilas; 
+        var porcentajeBombas;
+
+        function seleccionarDificultad() {
+            var dificultad = prompt("¿Qué dificultad prefieres? (Baja, Media o Alta)"); 
+
+            switch (dificultad.toLowerCase()) {
+                    case "baja":
+                        porcentajeBombas = 0.15;
+                        break;
+                    case "media":
+                        porcentajeBombas = 0.20;
+                        break;
+                    case "alta":
+                        porcentajeBombas = 0.30;
+                        break;
+                    default:
+                        porcentajeBombas = 0.20; // Se elige la dificultad media si no pone nada
+                        break;
                 }
-                
-                tabla += '</table>';
-                document.body.innerHTML += tabla;
+        }
+
+        function reiniciarJuego() {
+            document.getElementById('tablero').innerHTML = ''; // Elimina el contenido del tablero
+            generarTablero();
+        }
+
+        function generarTablero() {
+            seleccionarDificultad();
+            numFilas = prompt("¿Cuántas filas y columnas quieres que tenga el tablero?");
+            var totalCasillas = numFilas * numFilas;
+            var numeroBombas = Math.floor(totalCasillas * porcentajeBombas);
+            banderasRestantes = numeroBombas;
+            var tabla = '<table id="tablero">';
+
+            for (var x = 0; x < numFilas; x++) {
+                tabla += '<tr>';
+                for (var y = 0; y < numFilas; y++) {
+                    tabla += '<td id="casilla_' + x + '_' + y + '"><span class="numero"></span></td>';
+                }
+                tabla += '</tr>';
             }
+            tabla += '</table>';
+            document.getElementById('tablero').innerHTML = tabla;
+            añadirBombas(numeroBombas);
+            asignarEventListeners(); // Asigna los event listeners de las casillas después de generar el tablero
+        }
+        
+        function asignarEventListeners() {
+            var casillas = document.querySelectorAll('td');
+            casillas.forEach(function(casilla) {
+                casilla.addEventListener('click', mostrarCasilla);
+                casilla.addEventListener('contextmenu', colocarBandera);
+            });
+        }
+        
+        function añadirBombas(numeroBombas) {
+            var bombasColocadas = 0;
+
+            while (bombasColocadas < numeroBombas) {
+                var fila = Math.floor(Math.random() * numFilas);
+                var columna = Math.floor(Math.random() * numFilas);
+
+                var celda = document.getElementById('casilla_' + fila + '_' + columna);
+                if (!celda.classList.contains('bomba')) {
+                    celda.classList.add('bomba');
+                    var img = document.createElement('img');
+                    img.src = 'bomba.png';
+                    celda.appendChild(img);
+                    bombasColocadas++;
+                }
+            }
+        }
+
+        function mostrarNumeroBombasAlrededor(fila, columna) {
+            var numBombasAlrededor = 0;
+
+            for (var i = fila - 1; i <= fila + 1; i++) {
+                for (var j = columna - 1; j <= columna + 1; j++) {
+                    if (i >= 0 && i < numFilas && j >= 0 && j < numFilas) {
+                        var celdaVecina = document.getElementById('casilla_' + i + '_' + j);
+                        if (celdaVecina.classList.contains('bomba')) {
+                            numBombasAlrededor++;
+                        }
+                    }
+                }
+            }
+            return numBombasAlrededor;
+        }
+
+        function actualizarNumerosBombasAlrededor() {
+            for (var x = 0; x < numFilas; x++) {
+                for (var y = 0; y < numFilas; y++) {
+                    var celda = document.getElementById('casilla_' + x + '_' + y);
+                    if (!celda.classList.contains('bomba')) {
+                        var numBombasAlrededor = mostrarNumeroBombasAlrededor(x, y);
+                        if (numBombasAlrededor > 0) {
+                            var spanNumero = celda.querySelector('.numero');
+                            spanNumero.textContent = numBombasAlrededor;
+                        } else {
+                            var spanNumero = celda.querySelector('.numero');
+                            spanNumero.textContent = ""; // Deja la casilla vacía si no hay bombas alrededor
+                        }
+                    }
+                }
+            }
+        }
+
+
+        function finalizarJuego(mensaje) {
+            juegoTerminado = true;
+            var casillas = document.querySelectorAll('td');
+            casillas.forEach(function(casilla) {
+                if (casilla.classList.contains('bomba')) {
+                    casilla.querySelector('img').style.display = 'block'; // Mostrar todas las imágenes de bombas 
+                }
+                casilla.removeEventListener('click', mostrarCasilla); // Eliminar el evento clic
+                casilla.removeEventListener('contextmenu', colocarBandera); // Eliminar el evento clic derecho
+            });
+            alert(mensaje); // Mostrar el mensaje de alerta 
+        }
+
+
+        
+
+
+        function mostrarCasilla(event) {
+            if (juegoTerminado) return; // Si el juego ya terminó, no hacer nada
             
-            generarTableroJS();
-        </script>
-    </body>
+            var casilla = event.target;
+            casilla.classList.add('revelada'); // Agrega la clase 'revelada' a la casilla completa para poder diferenciarlas bien
+            var numero = casilla.querySelector('.numero');
+            numero.style.display = 'block';
+
+            var [fila, columna] = casilla.id.split('_').slice(1);
+            fila = parseInt(fila);
+            columna = parseInt(columna);
+
+            if (casilla.classList.contains('bomba')) {
+                finalizarJuego('¡Has perdido!'); // Mostrar mensaje al perder
+                return;
+            }
+
+            if (numero.textContent === '') {
+                for (var i = fila - 1; i <= fila + 1; i++) {
+                    for (var j = columna - 1; j <= columna + 1; j++) {
+                        if (i >= 0 && i < numFilas && j >= 0 && j < numFilas) {
+                            var celdaVecina = document.getElementById('casilla_' + i + '_' + j); //Esto es para conseguir cada id de cada casilla que ha sido dado al generar el tablero
+                            var numeroVecino = celdaVecina.querySelector('.numero');
+                            if (numeroVecino.textContent === '' && numeroVecino.style.display !== 'block') {
+                                mostrarCasilla({ target: celdaVecina });
+                            } else {
+                                numeroVecino.style.display = 'block'; //los muestra si no se cumplen las condiciones del if
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Verifica si todas las casillas no son bombas y están reveladas
+            var casillasNoBombas = document.querySelectorAll('td:not(.bomba)');
+            var todasReveladas = true;
+            casillasNoBombas.forEach(function(casilla) {
+                if (casilla.querySelector('.numero').style.display !== 'block') {
+                    todasReveladas = false; 
+                }
+            });
+            if (todasReveladas) {
+                finalizarJuego('¡Felicidades! Has ganado.'); //mensaje de victoria al revelar todas las casillas
+            }
+        }
+
+        var banderasRestantes;
+
+        function actualizarBanderasRestantes() {
+            var contadorBanderas = document.getElementById('contador-banderas');
+            contadorBanderas.textContent = banderasRestantes; //esto es para que se actualice al añadirlo en la funcion siguiente al colocar cada bandera 
+        }
+
+        function colocarBandera(event) {
+            event.preventDefault(); // Evitar el menú que se despliega de forma predeterminada al hacer clic derecho
+            var casilla = event.target;
+
+            // Si la casilla ya está descubierta, no se puede colocar una bandera
+            if (casilla.querySelector('.numero').style.display === 'block') {
+                return;
+            }
+
+            var tieneBandera = casilla.classList.contains('bandera');
+            // Si la casilla tiene bandera, quitarla
+            if (tieneBandera) {
+                casilla.classList.remove('bandera');
+                banderasRestantes++;
+            } else {
+                // Si no tiene bandera y quedan banderas disponibles se coloca
+                if (banderasRestantes > 0) {
+                    casilla.classList.add('bandera');
+                    banderasRestantes--; 
+                }
+            }
+
+            actualizarBanderasRestantes();
+        }
+
+        generarTablero(); //generamos el tablero 
+        actualizarNumerosBombasAlrededor(); //generamos los numeros
+
+        //Funcion para resetear el juego
+        var botonResetear = document.getElementById('botonResetearBuscaminas');
+        botonResetear.addEventListener('click', function() {
+            location.reload(); // Recarga la página para reiniciar el juego
+        });
+
+        // Botón para mostrar explicación del juego
+        var botonExplicacion = document.getElementById('botonExplicacion');
+        botonExplicacion.addEventListener('click', function() {
+            alert("¡Bienvenido a mi Buscaminas!\n\n"+
+            "El objetivo del juego es descubrir todas las casillas que no contienen bombas. "+
+            "Al hacer clic en una casilla, si no hay una bomba, se mostrará un número que indica cuántas bombas"+
+            " hay en las casillas vecinas. Si haces clic en una casilla con una bomba,"+
+            " pierdes.\n\nEl número de bombas se calcula automáticamente según la dificultad elegida.");
+        });
+
+    </script>
+</body>
 </html>
