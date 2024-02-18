@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Buscaminas Daniel Camargo Torremocha</title>
+    <title>Buscaminas Daniel Camargo Torremocha 2ºDAW </title>
     <meta charset="UTF-8">
     <style>
         table {
@@ -30,7 +30,7 @@
             margin-bottom: 10px;
         }
         td.revelada {
-            background-color: rgba(240, 240, 240, 0.9); /* Blanco ligeramente más oscuro */
+            background-color: rgba(240, 240, 240, 0.9); /* Blanco ligeramente más oscuro para diferenciar las casillas que se han mostrado ya de las que no */
         }
 
         .bomba img {
@@ -86,27 +86,22 @@
         var porcentajeBombas;
 
         function seleccionarDificultad() {
-            var dificultad = prompt("¿Qué dificultad prefieres? (Baja, Media o Alta)"); 
+            var dificultad = prompt("¿Qué dificultad prefieres? (facil, media o dificil)"); 
 
             switch (dificultad.toLowerCase()) {
-                    case "baja":
-                        porcentajeBombas = 0.15;
+                    case "facil":
+                        porcentajeBombas = 0.10; //10% de las casillas totales son bombas
                         break;
                     case "media":
-                        porcentajeBombas = 0.20;
+                        porcentajeBombas = 0.20;//20%
                         break;
-                    case "alta":
-                        porcentajeBombas = 0.30;
+                    case "dificil":
+                        porcentajeBombas = 0.30;//30%
                         break;
                     default:
-                        porcentajeBombas = 0.20; // Se elige la dificultad media si no pone nada
+                        porcentajeBombas = 0.20; // Se elige la dificultad media si no pone nada o algo que no es lo que pide
                         break;
                 }
-        }
-
-        function reiniciarJuego() {
-            document.getElementById('tablero').innerHTML = ''; // Elimina el contenido del tablero
-            generarTablero();
         }
 
         function generarTablero() {
@@ -139,6 +134,7 @@
             });
         }
         
+        // Función para añadir las bombas al tablero de forma aleatoria
         function añadirBombas(numeroBombas) {
             var bombasColocadas = 0;
 
@@ -157,6 +153,7 @@
             }
         }
 
+        // Función para mostrar el número de bombas alrededor de una casilla
         function mostrarNumeroBombasAlrededor(fila, columna) {
             var numBombasAlrededor = 0;
 
@@ -173,6 +170,7 @@
             return numBombasAlrededor;
         }
 
+        // Función para actualizar los números que muestran las bombas alrededor de cada casilla
         function actualizarNumerosBombasAlrededor() {
             for (var x = 0; x < numFilas; x++) {
                 for (var y = 0; y < numFilas; y++) {
@@ -191,7 +189,7 @@
             }
         }
 
-
+        // Función para finalizar el juego con un mensaje
         function finalizarJuego(mensaje) {
             juegoTerminado = true;
             var casillas = document.querySelectorAll('td');
@@ -199,8 +197,8 @@
                 if (casilla.classList.contains('bomba')) {
                     casilla.querySelector('img').style.display = 'block'; // Mostrar todas las imágenes de bombas 
                 }
-                casilla.removeEventListener('click', mostrarCasilla); // Eliminar el evento clic
-                casilla.removeEventListener('contextmenu', colocarBandera); // Eliminar el evento clic derecho
+                casilla.removeEventListener('click', mostrarCasilla); // Elimina el evento clic izquierdo
+                casilla.removeEventListener('contextmenu', colocarBandera); // Elimina el evento clic derecho
             });
             alert(mensaje); // Mostrar el mensaje de alerta 
         }
@@ -208,7 +206,7 @@
 
         
 
-
+        // Función para mostrar una casilla cuando el usuario hace clic
         function mostrarCasilla(event) {
             if (juegoTerminado) return; // Si el juego ya terminó, no hacer nada
             
@@ -222,7 +220,10 @@
             columna = parseInt(columna);
 
             if (casilla.classList.contains('bomba')) {
-                finalizarJuego('¡Has perdido!'); // Mostrar mensaje al perder
+                var imgBomba = casilla.querySelector('img');
+                imgBomba.style.display = 'block';
+                setTimeout(function() {finalizarJuego('¡Has perdido!'); // Mostrar mensaje al perder
+                }, 100); // Esperar un instante para que se muestre la bomba antes del alert
                 return;
             }
 
@@ -261,7 +262,8 @@
             var contadorBanderas = document.getElementById('contador-banderas');
             contadorBanderas.textContent = banderasRestantes; //esto es para que se actualice al añadirlo en la funcion siguiente al colocar cada bandera 
         }
-
+        
+        // Función para colocar o quitar una bandera en una casilla
         function colocarBandera(event) {
             event.preventDefault(); // Evitar el menú que se despliega de forma predeterminada al hacer clic derecho
             var casilla = event.target;
@@ -301,9 +303,10 @@
         botonExplicacion.addEventListener('click', function() {
             alert("¡Bienvenido a mi Buscaminas!\n\n"+
             "El objetivo del juego es descubrir todas las casillas que no contienen bombas. "+
-            "Al hacer clic en una casilla, si no hay una bomba, se mostrará un número que indica cuántas bombas"+
-            " hay en las casillas vecinas. Si haces clic en una casilla con una bomba,"+
-            " pierdes.\n\nEl número de bombas se calcula automáticamente según la dificultad elegida.");
+            "Al hacer clic izquierdo en una casilla, si no hay una bomba, se mostrará un número que indica cuántas bombas"+
+            " hay en las casillas vecinas. Si haces clic izquierdo en una casilla con una bomba,"+
+            " pierdes."+" \nSi haces clic derecho puedes poner una bandera donde creas que hay una bomba para tenerlas marcadas."
+            +"\n\nEl número de bombas se calcula automáticamente según la dificultad elegida.");
         });
 
     </script>
