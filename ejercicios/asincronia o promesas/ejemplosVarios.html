@@ -27,15 +27,15 @@
         const tareaRealizada=new Promise((resolve,reject)=>{
             if (realizado){
                 const trabajoCompletado= "la tarea se ha completado con éxito";
-                resolve(trabajoCompletado)
+                resolve(trabajoCompletado);
                 console.log(trabajoCompletado);
             }
             else{
             const trabajoFallido= "la tarea no se ha completado correctamente";
-                resolve(trabajoFallido)
+                reject(trabajoFallido);
                 console.log(trabajoFallido);
             }  
-        })
+        });
 
         //Ejemplo 5
         const miPromesa2= new Promise((resolve,reject)=>{

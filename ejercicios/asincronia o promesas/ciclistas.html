@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ciclistas</title>
+</head>
+<body>
+    <h1 id="pantalla" style="text-align:center;">Preparado para comenzar</h1>
+    <script>
+        const pantalla=document.getElementById("pantalla");
+        let corredor=1;
+        //let tiempoRestante=setInterval(initSalida,3000);
+        async function mostrarMensaje(){
+            for(let i=3;i>=1;i--)
+            {
+                pantalla.textContent=`Dorsal ${corredor} : ${i}`;
+                await esperarTiempo(1000);
+            }
+            pantalla.textContent = "Dorsal " + (corredor++) + " Ya!";
+            
+        }  
+        function esperarTiempo(tiempo) {
+            return new Promise(resolve => {setTimeout(() => {resolve();}, tiempo);
+            });
+        }
+
+
+        async function iniciarCarrera() {
+        
+        while (corredor<=25){
+            await mostrarMensaje();
+            await esperarTiempo(2000);
+        }
+        pantalla.textContent="Salida finalizada."
+        }
+        
+        //setTimeOut(cuentaAtras(),2000);
+        iniciarCarrera();
+    </script>
+</body>
+</html>

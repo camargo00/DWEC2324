@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 1 Salida Etapa</title>
+  </head>
+  <body>
+    <h1></h1>
+    <script>
+    const ciclistas = [
+        { dorsal: 1 },
+        { dorsal: 2 },
+        { dorsal: 3 },
+        { dorsal: 4 },
+        { dorsal: 5 },
+        { dorsal: 6 },
+        { dorsal: 7 },
+        { dorsal: 8 },
+        { dorsal: 9 },
+        { dorsal: 10 },
+        { dorsal: 11 },
+        { dorsal: 12 },
+        { dorsal: 13 },
+        { dorsal: 14 },
+        { dorsal: 15 },
+        { dorsal: 16 },
+        { dorsal: 17 },
+        { dorsal: 18 },
+        { dorsal: 19 },
+        { dorsal: 20 },
+        { dorsal: 21 },
+        { dorsal: 22 },
+        { dorsal: 23 },
+        { dorsal: 24 },
+        { dorsal: 25 }
+    ];
+
+    function mostrarCuentaAtras(dorsal) {
+        var h1=document.getElementById("h1")
+        const tiempoRestante = 3000 + (dorsal - 1) * 5000;
+        return new Promise((resolve) => {
+        const intervalo = setInterval(() => {
+            tiempoRestante -= 500;
+            h1.write("${dorsal}: ${tiempoRestante / 1000} segundos");
+            if (tiempoRestante <= 0) {
+                clearInterval(intervalo);
+                h1.write("${dorsal} ¡Salida!");
+                resolve();}}, 500);
+        });
+    }
+
+    async function salidaEtapa() {
+        for (const ciclista of ciclistas) {
+            await mostrarCuentaAtras(ciclista.dorsal);
+        }
+    }
+
+    salida();
+    </script>
+</body>
+</html>

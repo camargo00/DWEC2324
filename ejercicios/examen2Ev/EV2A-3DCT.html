@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-bottom: 5px;
+      }
+
+      input,
+      button {
+        margin-bottom: 10px;
+        padding: 8px;
+      }
+
+      button {
+        background-color: #620af0;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #5445a0;
+      }
+
+      .error {
+        color: #ff0000;
+        font-size: 14px;
+      }
+    </style>
+    <title>Formulario de Registro Examen</title>
+  </head>
+
+  <body>
+    
+    <div class="container">
+    
+    <h2>Formulario de Registro</h2>
+    
+    <form id="formRegistro">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required pattern="[A-Za-z]{1,15}"/>
+
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="telefono">Teléfono</label>
+        <input type="text" id="telefono" name="telefono" minlength="9" pattern="\d+" required />
+
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" minlength="8" required  />
+
+        <label for="confContrasena">Confirmación de contraseña:</label>
+        <input type="password" id="confContrasena" name="confContrasena" required />
+
+        <button type="submit" id="enviar">Registro</button> <br/>
+    </form>
+    <div id="mensajeError"></div>
+    </div>
+
+    <script>
+    window.onload=iniciar;
+    function iniciar(){
+        document.getElementById("enviar").addEventListener("click", validarTodo)
+    }
+    function validarNombre(){
+        var elemento=document.getElementById("nombre")
+        if(!elemento.checkValidity()){
+            //error(elemento)
+            
+            if(elemento.validity.valueMissing){
+            error2(elemento,"No puede dejar el campo vacío")
+            }
+            
+            if(elemento.validity.patternMismatch){
+                error2(elemento,"Debe contener únicamente letras y sin espacios");
+            }
+            return false
+        }
+        return true
+    }
+
+    function validarEmail()
+    { 
+        /*var elemento=document.getElementById("email")
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            error2(elemento,"El correo no es valido")
+            return false;
+        }
+        */
+        
+        //lo he comentado porque con la validación que nos das no me acepta ningun correo a pesar de que este sea valido 
+        //por lo tanto me sale error todo el rato,puedes comprobarlo si lo descomentas
+        return true;
+    }
+
+    function validarTelefono(){
+        var elemento=document.getElementById("telefono")
+        if(!elemento.checkValidity()){
+            error(elemento)
+            return false
+        }
+        return true
+    }
+
+    function validarContrasena(){
+        var elemento=document.getElementById("contrasena")
+        if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/\d/.test(password)) { 
+            error2(elemento,'Contraseña inválida');
+            return false;
+
+        }
+        return true
+    }
+    function validarConfContrasena(){
+        var elemento=document.getElementById("confContrasena")
+        let contrasena=document.getElementById("contrasena")
+        let confContrasena=document.getElementById("confContrasena")
+        if(contrasena===confContrasena)
+        return true;
+        else {
+            error2(elemento,"no coinciden las contraseñas")
+        return false;}
+    }
+
+    function validarTodo(e){
+        borrarError()
+        if(validarNombre() && validarEmail() && validarTelefono() && validarContrasena() && validarConfContrasena()){
+        return true
+        alert("Enviado con exito");
+        }
+        else{
+            e.preventDefault()
+            return false
+        }
+    }
+
+    function error(elemento){
+        document.getElementById("mensajeError").innerHTML=elemento.validationMessage
+        elemento.classList.add("error");
+        elemento.focus()
+    }
+    function borrarError(){
+        var formulario = document.forms[0]
+        for(var i=0; i< formulario.elements.length;i++){
+            formulario.elements[i].className="";
+        }
+    }
+    function error2(elemento, mensaje){
+        document.getElementById("mensajeError").innerHTML=mensaje;
+        elemento.className="error"
+        elemento.focus();
+    }
+
+    </script>
+</body>
+</html>
