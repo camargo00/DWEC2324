@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 Animales</title>
+</head>
+<body>
+    <script>
+        class Animal{
+            constructor(nombre,edad,patas,especie,estado){
+            this.nombre=nombre;
+            this.edad=edad;
+            this.patas=patas;
+            this.especie=especie;
+            this.estado=estado;
+        }
+        introduce(){
+            return "Hola mi nombre es "+this.nombre+" y tengo "+this.edad+" años.";
+        }
+    }
+
+    class Tiburon extends Animal
+    {
+        constructor(nombre,edad,estado,especie){
+            super(nombre,edad,estado);
+            this.especie="Escualos";
+        }
+        
+
+    }
+
+    class Gato extends Animal{
+        constructor(nombre,edad,estado,especie){
+            super(nombre,edad,estado);
+            this.especie="Felinos";
+        }
+        introduceGato(){
+            return this.introduce()+" "+" "+"¡Miau, Miau!"; //usamos el metodo de la clase padre para reutilizar codigo
+        }
+    }
+    
+    class Perro extends Animal{
+        constructor(nombre,edad,estado,dueño,especie){
+            super(nombre,edad,estado);
+            this.dueño=dueño;
+            this.especie="Canidos";
+        }
+        saludaDueño(){
+            return "Hola "+this.dueño;
+        }
+    }
+
+    let miTiburon=new Tiburon("Chum",5,"Hambriento");
+    let miGato= new Gato("Silvestre",3,"Juguetón");
+    let miPerro= new Perro("Cane",2,"Feliz","Pepe");
+    console.log(miTiburon.introduce());
+    console.log(miGato.introduceGato());
+    console.log(miPerro.introduce()+ " "+miPerro.saludaDueño());;
+    </script>
+</body>
+</html>
